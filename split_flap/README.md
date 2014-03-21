@@ -11,11 +11,11 @@ There are a few steps to getting split-flap goodness into your app:
 
         void split_flap_layer_init_page(SplitFlapLayer* split_layer, SplitFlapLayerPage* page)
 
-1. Add your content layers to each page's `page->upperLayer` and `page->lowerLayer` layers (sorry, you can't use the same layer in both places... yet).
+1. Add your content to each page's `page->upperLayer` and `page->lowerLayer` layers (sorry, you can't use the same layer in both places... yet). You can either add child layers, or set the `update_proc` to your own drawing function.
 1. Tell the SplitFlapLayer the pages you want it to display:
 
         void split_flap_layer_set_pages(SplitFlapLayer* split_layer, SplitFlapLayerPage* pages, int32_t num_pages)
-    (where `pages` is a pointer to an array of pointers to the `SplitFlapLayerPage`s from step 3)
+    (where `pages` is a pointer to an array of the `SplitFlapLayerPage`s from step 3)
 
 1. Add the SplitFlapLayer's internal Layer to your UI. For example:
 
@@ -27,14 +27,13 @@ There are a few steps to getting split-flap goodness into your app:
             split_flap_layer_deinit_page(page);
             free(page);
 
-    1. Don't forget to deallocate your page array if it was dynamically allocated.
     1. Finally, call clean up the last internal bits of the control.
 
             void split_flap_layer_destroy(SplitFlapLayer* split_layer)
 
 Changing Pages
 --------------
-**`split_flap_layer_set_current_page(SplitFlapLayer* split_layer, int32_t page_idx, bool animated)`**
+**`split_flap_layer_set_current_page(SplitFlapLayer* split_layer, uint32_t page_idx, bool animated)`**
 
 For when you wish to display a particular page.
 
