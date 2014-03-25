@@ -60,3 +60,7 @@ Here's how you use it:
       split_flap_layer_set_callbacks(split_layer, (SplitFlapLayerCallbacks){.page_changed = flip_page_changed});
       ...
     }
+
+Configuration
+-------------
+The top of `split_flap.c` harbors configuartion constants for the foreground and background colours of the control, the width of the outer border, the height of the middle divider, and the animation duration.
